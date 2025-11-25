@@ -11,7 +11,7 @@ This version provides a clean, open-source base for building your own custom Min
 
 ---
 
-> [!WARNNING]
+> [!WARNING]
 > This version is intended to work **only on Linux**.
 
 ---
