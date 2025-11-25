@@ -7,6 +7,8 @@
 //     void *label;  // resume point, NULL if coroutine ended
 // } AsyncState;
 
+void close_connection(int fd);
+
 typedef struct {
     int length;
     char *buffer;

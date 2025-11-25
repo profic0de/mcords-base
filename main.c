@@ -30,7 +30,7 @@ config* load(char* file, int len, char* fallback);
 char* get_config(config* config, char* key);
 int free_config(config* config);
 
-void close_connection(int fd, int epoll_fd) {
+void close_connection(int fd) {
     epoll_ctl(epoll_fd, EPOLL_CTL_DEL, fd, NULL);
     close(fd);
 
@@ -114,7 +114,7 @@ int handle_packet(int fd, int epoll_fd) {
         int amout = (packet->state==0x01 && packet->len > sizeof(buf))? sizeof(buf) : (packet->state==0x02)? 1 : packet->len - packet->buf->length;
         ssize_t n = recv(fd, buf, amout, 0);
         if (n == 0) {
-            close_connection(fd, epoll_fd);
+            close_connection(fd);
             for (int i = 0; i < packets; i++) {
                 if (packet_queue && packet_queue[i]->from==fd) {
                     free_buffer(packet_queue[i]->buf);
@@ -126,7 +126,7 @@ int handle_packet(int fd, int epoll_fd) {
         } else if (n < 0) {
             if (errno != EAGAIN && errno != EWOULDBLOCK) {
                 perror("recv");
-                close_connection(fd, epoll_fd);
+                close_connection(fd);
                 return 2;
             } else if (errno == EAGAIN || errno == EWOULDBLOCK) {
                 return 0;
@@ -261,7 +261,7 @@ int main() {
             if (fd == server_fd) {
                 accept_connection(server_fd, epoll_fd);
             } else if (ev_flags & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
-                close_connection(fd, epoll_fd);
+                close_connection(fd);
             } else if (ev_flags & EPOLLIN) {
                 handle_packet(fd, epoll_fd);
             } else if (ev_flags & EPOLLOUT) {
@@ -274,7 +274,7 @@ int main() {
 
     for (int i = 0; i < max_fds; i++) {
         if (fds[i]) {
-            close_connection(i, epoll_fd);
+            close_connection(i);
         }
     }
 
