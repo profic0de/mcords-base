@@ -1,6 +1,6 @@
 # MCords Base
 
-[![Discord](https://img.shields.io/discord/1015885074977912903?label=Join%20MCords%20Discord&style=flat-square)](https://discord.gg/FdHhRYW66P)
+[![Discord](https://img.shields.io/discord/1369798082195095592?label=Join%20MCords%20Discord&style=flat-square)](https://discord.gg/FdHhRYW66P)
 
 
 **MCords Base** is a lightweight Minecraft proxy server framework written in C, designed to modify packets on the fly.  
