@@ -5,7 +5,9 @@
 ---
 
 > [!IMPORTANT]
-> Plugin API is under development
+> This is the full version of MCords with all features.
+> For the minimal version (a clean base for building your own C server), see:
+> [MCords Base repository](https://github.com/profic0de/mcords-base)
 
 <!-- ---
 
