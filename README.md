@@ -1,23 +1,37 @@
-# MCords Node
+# MCords Base
 
-**MCords node** is a custom Minecraft proxy server written in C that can modify packets on the fly
+**MCords Base** is a lightweight Minecraft proxy server framework written in C, designed to modify packets on the fly.  
+This version provides a clean, open-source base for building your own custom Minecraft server or proxy.
 
 ---
 
 > [!IMPORTANT]
-> This is the full version of MCords with all features.
-> For the minimal version (a clean base for building your own C server), see:
-> [MCords Base repository](https://github.com/profic0de/mcords-base)
+> This project is licensed under the **GNU General Public License v2.0 (GPL-2.0)**.  
+> You are free to use, modify, and distribute it under the terms of this license.
 
-<!-- ---
+---
 
-> [!WARNING]
-> This project is under heavy development. -->
+> [!WARNNING]
+> This version is intended to work **only on Linux**.
 
 ---
 
 ### 📂 Clone the Repository
 
 ```bash
-git clone https://github.com/profic0de/mcords-node.git
+git clone https://github.com/profic0de/mcords-base.git
 ```
+
+---
+
+### 🛠️ Compile mcords instance
+
+To compile the project, run the included Python build script:
+
+```bash
+python3 build.py
+```
+
+This script will compile the source code and create the executable.
+
+---
