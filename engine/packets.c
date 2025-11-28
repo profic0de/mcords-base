@@ -44,10 +44,20 @@ int process_packet(Packet* packet) {
     char *ptr;
 
     switch (intent) {
-    case 1:    
+    case 1:
         buf = init_buffer();
-        build_varint(buf, 0x00);
-        build_string(buf, MOTD);
+        if (!parse_varint(packet->buf, &error)) {
+            build_varint(buf, 0x00);
+            build_string(buf, MOTD);            
+        } else {
+            build_varint(buf, 0x01);
+            build_integer(buf, parse_integer(packet->buf, 8, 1, &error), 8, 1);
+        }
+        if (error) {
+            free_buffer(buf);
+            buf = NULL;
+            close_connection(packet->from);
+        }
         break;
 
     case 2:    
